@@ -1,14 +1,18 @@
 #include <iostream>
+//#include <iomanip> // para usar std::boolalpha
 
 #include "ArgumentParser.h"
-#include "ModeFactory.h"
+#include "OperationMode.h"
 
+//argc indica quantos argumentos tem na lista. argv indica o caminho do EXE, 
+// o argumento (--argumento) e o argumento seguinte
+// argc é Argument Count e o argv é um vetor de strings
 int main(int argc, char* argv[]) 
 {
 	setlocale(LC_ALL, "pt_BR");
 	setlocale(LC_NUMERIC, "en_US");
 
-	ArgumentParser argParser;
+	ArgumentParser argParser; // argParser é o objeto da classe ArgumentParser
 
 	// Registra as flags do PhotoBatch
 	argParser.RegisterFlag(Args::Flags::Rename);
@@ -28,9 +32,9 @@ int main(int argc, char* argv[])
 	argParser.RegisterOption(Args::Opts::From);
 	argParser.RegisterOption(Args::Opts::To);
 
-	// Interpreta tudo que foi passando pela linha de comando
-	argParser.Parse(argc, argv);
+	argParser.Parse(argc, argv); // Interpreta tudo que foi passando pela linha de comando
 
+	// String não escapada (R"()")
 	argParser.SetHelpMessage(R"([USO]: PhotoBatch --[Rename|Scale|Convert|Resize] [Opções]
 
     O PhotoBatch possui 4 modos de operação. Somente um modo pode estar ativo.
@@ -107,7 +111,7 @@ Exemplos de uso:
 	{
 		try
 		{
-			if (std::unique_ptr<Mode> PhotoBatchMode = CreateModeFactory(argParser))
+			if (std::unique_ptr<Mode> PhotoBatchMode = OperationMode(argParser))
 			{
 				PhotoBatchMode->Run();
 			}
