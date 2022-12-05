@@ -1,16 +1,19 @@
 #include "Mode.h"
 #include "Utils.h"
 
-#include "ModeFactory.h"
+#include "OperationMode.h"
 
 #include <iostream>
 #include <filesystem>
 #include <chrono>
 
+// Implementar o construtor
 Mode::Mode(const std::string& filter, const std::string& folder)
 	: m_Filter{ filter }
     , m_Folder{ folder }
 {
+	//m_Folder = folder;
+	//m_Filter = filter;
 }
 
 const std::string& Mode::GetFilter() const
