@@ -16,7 +16,7 @@ This application was made during the Project Development course with C++. Instru
 
 
 ## How to use
-#### Note: At this moment all internal messages of the application and Help are in Portuguese.
+#### Note: At this moment all internal messages and Help are in Portuguese.
 
 [USO]: PhotoBatch --[Rename|Scale|Convert|Resize] [Opções]
 
