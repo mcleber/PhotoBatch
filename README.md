@@ -90,7 +90,3 @@ Exemplos de uso:
 - CMake
 - STB libraries
 - Visual Studio
-
-## Author
-
-Cleber Moretti
