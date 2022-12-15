@@ -18,8 +18,8 @@ add_executable(PhotoBatch "PhotoBatch.cpp"
 	"ScaleMode.cpp"
         "ScaleMode.h"
         "STBDef.cpp"
-	"ModeFactory.cpp"
-        "ModeFactory.h"
+	"OperationMode.cpp"
+        "OperationMode.h"
 )
 
 set_target_properties(PhotoBatch PROPERTIES CXX_STANDARD 20)
