@@ -10,10 +10,9 @@
 // Implementar o construtor
 Mode::Mode(const std::string& filter, const std::string& folder)
 	: m_Filter{ filter }
-    , m_Folder{ folder }
+        , m_Folder{ folder }
 {
-	//m_Folder = folder;
-	//m_Filter = filter;
+
 }
 
 const std::string& Mode::GetFilter() const
@@ -37,7 +36,7 @@ void Mode::Run()
 	ClockT::duration elapsedTime = endTime - starTime;
 	std::chrono::milliseconds elapsedTimeMs = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedTime);
 
-	std::cout << GetModeName() << "Operação finalizda em " << elapsedTimeMs.count() << "ms" << std::endl;
+	std::cout << GetModeName() << "OperaÃ§Ã£o finalizda em " << elapsedTimeMs.count() << "ms" << std::endl;
 
 }
 
@@ -63,8 +62,8 @@ std::vector<std::filesystem::path> Mode::GetFiles(const std::filesystem::path& e
 		}
 	}
 
-	std::cout << GetModeName() << "Número de arquivos encontrados: " << files.size() << std::endl;
-	std::cout << GetModeName() << "Número de arquivos ignorados  : " << numSkippedFiles << std::endl;
+	std::cout << GetModeName() << "NÃºmero de arquivos encontrados: " << files.size() << std::endl;
+	std::cout << GetModeName() << "NÃºmero de arquivos ignorados  : " << numSkippedFiles << std::endl;
 
 	return files;
 }
