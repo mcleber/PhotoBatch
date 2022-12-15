@@ -1,18 +1,14 @@
 #include <iostream>
-//#include <iomanip> // para usar std::boolalpha
 
 #include "ArgumentParser.h"
 #include "OperationMode.h"
 
-//argc indica quantos argumentos tem na lista. argv indica o caminho do EXE, 
-// o argumento (--argumento) e o argumento seguinte
-// argc È Argument Count e o argv È um vetor de strings
 int main(int argc, char* argv[]) 
 {
 	setlocale(LC_ALL, "pt_BR");
 	setlocale(LC_NUMERIC, "en_US");
 
-	ArgumentParser argParser; // argParser È o objeto da classe ArgumentParser
+	ArgumentParser argParser;
 
 	// Registra as flags do PhotoBatch
 	argParser.RegisterFlag(Args::Flags::Rename);
@@ -21,7 +17,7 @@ int main(int argc, char* argv[])
 	argParser.RegisterFlag(Args::Flags::Scale);
 	argParser.RegisterFlag(Args::Flags::Help);
 	
-	// Registra as opÁıes do PhotoBatch
+	// Registra as op√ß√µes do PhotoBatch
 	argParser.RegisterOption(Args::Opts::Folder);
 	argParser.RegisterOption(Args::Opts::Filter);
 	argParser.RegisterOption(Args::Opts::Width);
@@ -34,10 +30,9 @@ int main(int argc, char* argv[])
 
 	argParser.Parse(argc, argv); // Interpreta tudo que foi passando pela linha de comando
 
-	// String n„o escapada (R"()")
-	argParser.SetHelpMessage(R"([USO]: PhotoBatch --[Rename|Scale|Convert|Resize] [OpÁıes]
+	argParser.SetHelpMessage(R"([USO]: PhotoBatch --[Rename|Scale|Convert|Resize] [Op√ß√µes]
 
-    O PhotoBatch possui 4 modos de operaÁ„o. Somente um modo pode estar ativo.
+    O PhotoBatch possui 4 modos de opera√ß√£o. Somente um modo pode estar ativo.
     Para ativar um modo escolha uma das seguintes flags:
 
     --Rename  : Ativa o modo para renomear arquivos
@@ -45,51 +40,51 @@ int main(int argc, char* argv[])
     --Resize  : Ativa o modo para redimensionar arquivos
     --Scale   : Ativa o modo para escalar arquivos
 
-    As seguintes opÁıes s„o comuns a todos os modos:
-    --Folder  : Especifica a pasta onde o PhotoBatch ir· atuar
+    As seguintes op√ß√µes s√£o comuns a todos os modos:
+    --Folder  : Especifica a pasta onde o PhotoBatch ir√° atuar
     --Filter  : Especifica o filtro usado para selecionar arquivos
 
-OpÁıes do modo Rename:
+Op√ß√µes do modo Rename:
 
-    No modo Rename, cada arquivo selecionado ser· renomeado para o formato
-    <Prefix>_<N>.<ext>, onde <Prefix> e <N> s„o especificados atravÈs de opÁıes.
-    <ext> È a extens„o do arquivo que permanece inalterada.
+    No modo Rename, cada arquivo selecionado ser√° renomeado para o formato
+    <Prefix>_<N>.<ext>, onde <Prefix> e <N> s√£o especificados atrav√©s de op√ß√µes.
+    <ext> √© a extens√£o do arquivo que permanece inalterada.
 
     --Prefix=<Prefix> : Prefixo usado ao renomear os arquivos
-    --StartNumber=<N> : N˙mero inicial a ser adicionado em cada arquivo que for renomeado
+    --StartNumber=<N> : N√∫mero inicial a ser adicionado em cada arquivo que for renomeado
 
-OpÁıes do modo Convert:
+Op√ß√µes do modo Convert:
 
-    No modo Convert, cada arquivo selecionado ser· convertido do formato <from> para
-    o formato <to>. <from> e <to> n„o podem ser iguais. O nome do arquivo permanece
+    No modo Convert, cada arquivo selecionado ser√° convertido do formato <from> para
+    o formato <to>. <from> e <to> n√£o podem ser iguais. O nome do arquivo permanece
     inalterado.
 
-    --From=<jpg|png|tga> : Extens„o de origem para convers„o
-    --To=<jpg|png|tga>   : Extens„o de destino para convers„o
+    --From=<jpg|png|tga> : Extens√£o de origem para convers√£o
+    --To=<jpg|png|tga>   : Extens√£o de destino para convers√£o
 
-OpÁıes do modo Resize:
+Op√ß√µes do modo Resize:
 
-    No modo Resize, cada arquivo selecionado ser· redimensionado para as dimensıes
-    especificadas nas seguintes opÁıes. Note que N >= 1.
+    No modo Resize, cada arquivo selecionado ser√° redimensionado para as dimens√µes
+    especificadas nas seguintes op√ß√µes. Note que N >= 1.
 
     --Width=<N>  : Novo comprimento da imagem
     --Height=<N> : Nova altura da imagem
 
-OpÁıes do modo Scale:
+Op√ß√µes do modo Scale:
 
-    No modo Scale, cada arquivo selecionado ser· escalado uniformemente pelo
-    fator especificado pelas seguintes opÁıes. Note que N > 0 e ser· interpretado
-    como um n˙mero em ponto flutuante.
+    No modo Scale, cada arquivo selecionado ser√° escalado uniformemente pelo
+    fator especificado pelas seguintes op√ß√µes. Note que N > 0 e ser√° interpretado
+    como um n√∫mero em ponto flutuante.
 
     --Amount=<N> : Fator de escala a ser aplicado em cada imagem selecionada.
 
 Exemplos de uso:
 
-    Renomear todos os arquivos da pasta "C:\Viagem" com a extens„o ".png" para Viagem_N.png, onde N comeÁa do 0
+    Renomear todos os arquivos da pasta "C:\Viagem" com a extens√£o ".png" para Viagem_N.png, onde N come√ßa do 0
 
         PhotoBatch --Rename --Folder="C:\Viagem" --Filter=".png" --Prefix="Viagem_" --StartNumber=0
 
-    Redimensionar todos os arquivos na pasta "C:\Viagem" com a extens„o ".jpg" para o tamanho 500x500
+    Redimensionar todos os arquivos na pasta "C:\Viagem" com a extens√£o ".jpg" para o tamanho 500x500
 
         PhotoBatch --Resize --Folder="C:\Viagem" --Filter=".jpg" --Width=500 --Height=500
 
@@ -120,7 +115,7 @@ Exemplos de uso:
 		catch (const std::exception& exception)
 		{
 			std::cerr << "Erro: " << exception.what() << std::endl;
-			std::cerr << "Para mais informaÁıes utilize a flag --help" << std::endl;
+			std::cerr << "Para mais informa√ß√µes utilize a flag --help" << std::endl;
 		}
 	}
 
